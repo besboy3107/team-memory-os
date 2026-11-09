@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Team Memory OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=optional" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+  <aside>
+    <div class="brand">
+      <div class="brand-icon">◉</div>
+      <div class="brand-text">
+        <b>TEAM MEMORY</b>
+        <small>OS v2.0</small>
+      </div>
+    </div>
+    <nav>
+      <button class="active" data-page="home">
+        <span class="nav-icon">⌂</span><span>Главная</span>
+      </button>
+      <button data-page="docs">
+        <span class="nav-icon">▤</span><span>База знаний</span>
+      </button>
+      <button data-page="audit">
+        <span class="nav-icon">◌</span><span>Аудит</span>
+      </button>
+    </nav>
+    <div class="sidebar-footer">
+      <div id="llm-status" class="llm-status">
+        <div class="llm-dot" id="llm-dot"></div>
+        <div style="min-width:0">
+          <div class="llm-label">AI ENGINE</div>
+          <div class="llm-model" id="llm-model-name">загрузка…</div>
+        </div>
+      </div>
+      <div class="online-info">
+        <div>● KNOWLEDGE BASE</div>
+        <small>SQLite · локальный</small>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ГЛАВНАЯ -->
+    <section id="home" class="page">
+      <header>
+        <div class="header-left">
+          <label>ВНУТРЕННЯЯ ПАМЯТЬ КОМАНДЫ</label>
+          <h1>Ответы из знаний,<br>а не из догадок</h1>
+          <p>Единое место для документов, решений и проверяемых ИИ-ответов.</p>
+        </div>
+        <button id="export" class="btn-outline">↓ Экспорт</button>
+      </header>
+      <div class="hero">
+        <div class="card ask">
+          <label>ЗАДАТЬ ВОПРОС КОМАНДЕ</label>
+          <h2>Что нужно найти?</h2>
+          <p>Система анализирует внутренние документы с помощью ИИ и показывает источник каждого ответа.</p>
+          <div class="input-wrap">
+            <textarea id="query" placeholder="Как проходит онбординг нового клиента?"></textarea>
+          </div>
+          <div class="ask-actions">
+            <button class="btn-primary" id="ask">
+              <span id="ask-label">Найти ответ</span>
+              <span class="ask-arrow">↗</span>
+            </button>
+            <span id="status"></span>
+          </div>
+        </div>
+        <div class="card memory">
+          <label>ПАМЯТЬ РЕШЕНИЙ</label>
+          <div class="ring-wrap">
+            <div class="ring">
+              <div>
+                <div>◉</div>
+                <small>TEAM</small>
+              </div>
+            </div>
+          </div>
+          <h3>Контекст остаётся<br>внутри команды</h3>
+          <p style="margin-top:8px;font-size:13px">Документы · решения · источники</p>
+        </div>
+      </div>
+
+      <div id="stats" class="stats"></div>
+
+      <div class="section-head">
+        <label>ПОСЛЕДНИЕ ОТВЕТЫ</label>
+        <h2>Лента знаний</h2>
+      </div>
+      <div id="feed" class="grid"></div>
+    </section>
+
+    <!-- БАЗА ЗНАНИЙ -->
+    <section id="docs" class="page hidden">
+      <div class="page-head">
+        <div>
+          <label>KNOWLEDGE BASE</label>
+          <h1 class="page-title">Документы команды</h1>
+          <p>Источники, на которые система опирается при генерации ответов.</p>
+        </div>
+      </div>
+      <div id="documents" class="grid" style="margin-top:28px"></div>
+      <div class="page-subhead">
+        <label>РЕШЕНИЯ</label>
+        <h2>Сохранённые решения</h2>
+      </div>
+      <div id="memories" class="grid" style="margin-top:16px"></div>
+    </section>
+
+    <!-- АУДИТ -->
+    <section id="audit" class="page hidden">
+      <div class="page-head">
+        <div>
+          <label>CONTROL ROOM</label>
+          <h1 class="page-title">Аудит ответов</h1>
+          <p>Каждый запрос оставляет прозрачный след: модель, время ответа, источник данных.</p>
+        </div>
+      </div>
+      <div id="auditList" class="audit-list"></div>
+    </section>
+  </main>
+
+  <!-- МОДАЛЬНОЕ ОКНО -->
+  <div id="modal" class="modal hidden">
+    <div class="modalbox">
+      <button id="close">×</button>
+      <label>ОТВЕТ СИСТЕМЫ</label>
+      <h2 id="mtitle"></h2>
+      <div id="mbody"></div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
